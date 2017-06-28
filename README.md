@@ -2,6 +2,10 @@
 
 > Web Client for UNIRIO'S classes
 
+# Boilerplate documentation
+
+https://github.com/vuejs-templates/webpack
+
 ## Build Setup
 
 ``` bash
