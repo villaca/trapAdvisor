@@ -1,28 +1,20 @@
 <template>
     <div class="login">
-        <h1>{{ msg }}</h1>
-        <form action="www.google.com" method="POST">
-            <input type="text"/>
-            <input type="submit" value="Logar"/>
-        </form>
-        <input type="button" @click="login()" value="a realidade é cruel"/>
-        <h3>{{ traveller.id }}</h3>
-        <h3>{{ traveller.name }}</h3>
+        <input id="login" type="button" @click="login()" value="clique para logar"/>
         <div id="fb"></div>
     </div>
+
 </template>
 
 <script>
 
-import Traveller from '../../src/Model/Traveller.js'
+// import Traveller from '../../src/Model/Traveller.js'
 import axios from 'axios'
 
 export default {
   name: 'Login',
   data () {
     return {
-      msg: 'Facebook login',
-      traveller: new Traveller(1, 'safado'),
       facebook: ''
     }
   },
@@ -33,6 +25,8 @@ export default {
         console.log(response)
         this.facebook = response.data
         let fb = document.getElementById('fb')
+        let login = document.getElementById('login')
+        login.innerHTML = ''
         fb.innerHTML = response.data
       })
       .catch(e => {
