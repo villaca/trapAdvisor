@@ -5,15 +5,39 @@
             <input type="text"/>
             <input type="submit" value="Logar"/>
         </form>
+        <input type="button" @click="login()" value="a realidade é cruel"/>
+        <h3>{{ traveller.id }}</h3>
+        <h3>{{ traveller.name }}</h3>
+        <div id="fb"></div>
     </div>
 </template>
 
 <script>
+
+import Traveller from '../../src/Model/Traveller.js'
+import axios from 'axios'
+
 export default {
   name: 'Login',
   data () {
     return {
-      msg: 'Facebook login'
+      msg: 'Facebook login',
+      traveller: new Traveller(1, 'safado'),
+      facebook: ''
+    }
+  },
+  methods: {
+    login () {
+      axios.get('http://trapadvisor.us-east-2.elasticbeanstalk.com/login', {})
+      .then(response => {
+        console.log(response)
+        this.facebook = response.data
+        let fb = document.getElementById('fb')
+        fb.innerHTML = response.data
+      })
+      .catch(e => {
+        console.log(e)
+      })
     }
   }
 }
